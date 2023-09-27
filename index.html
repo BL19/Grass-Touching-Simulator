@@ -195,8 +195,10 @@
         /////////
         // MESH
         /////////
-        const maxPos = 150;
-        const grassPerSquareMetre = 125;
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const maxPos = Number((urlParams.get('size') || "30"));
+        const grassPerSquareMetre = Number((urlParams.get('gpsq') || "125"));
         const instanceNumber = maxPos * maxPos * grassPerSquareMetre;
         const dummy = new THREE.Object3D();
 
