@@ -4,11 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-        }
-    </style>
+
     <!-- Primary Meta Tags -->
     <title>Grass Toucher - Go touch grass now</title>
     <meta name="title" content="Grass Toucher - Go touch grass now" />
@@ -29,6 +25,7 @@
     <meta name="keywords" content="Grass, Simulator, Touch Grass, Grass Simulator" />
     <meta name="author" content="BL19" />
 
+    <link rel="stylesheet" href="styles.css">
     <!-- <link rel="icon" href="https://grasstoucher.com/favicon.ico" type="image/x-icon" /> -->
 </head>
 
@@ -229,6 +226,7 @@
         }
 
         //
+        let lastFrame = 0;
 
         const animate = function () {
 
@@ -237,7 +235,12 @@
             leavesMaterial.uniformsNeedUpdate = true;
 
             requestAnimationFrame(animate);
-
+            let now = clock.getElapsedTime();
+            let diff = now - lastFrame;
+            lastFrame = now;
+            let diffMs = diff * 1000;
+            let fps = 1 / diff;
+            document.getElementById("fps").innerHTML = fps.toFixed(2) + " FPS";
             renderer.render(scene, camera);
         };
 
@@ -248,6 +251,7 @@
 
         animate();
     </script>
+    <span id="fps"></span>
 </body>
 
 </html>
